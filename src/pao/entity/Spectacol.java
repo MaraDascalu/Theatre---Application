@@ -1,9 +1,7 @@
 package pao.entity;
 
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Objects;
+import java.util.*;
 
 public class Spectacol {
 
@@ -12,7 +10,7 @@ public class Spectacol {
     private int durata;
     private int numarBileteVandute;
     private Locatie locatie;
-    private Actor[] actori;
+    private List<Actor> actori;
     private int pret;
     private Genul gen;
 
@@ -22,7 +20,7 @@ public class Spectacol {
         this.oraInceput = oraInceput;
         this.numarBileteVandute = 0;
         this.locatie = locatie;
-        this.actori = new Actor[15];
+        this.actori = new ArrayList<>();
         this.pret = pret;
         this.gen = gen;
     }
@@ -43,7 +41,7 @@ public class Spectacol {
         return locatie;
     }
 
-    public Actor[] getActori() {
+    public List<Actor> getActori() {
         return actori;
     }
 
@@ -75,7 +73,7 @@ public class Spectacol {
         this.locatie = locatie;
     }
 
-    public void setActori(Actor[] actori) {
+    public void setActori(List<Actor> actori) {
         this.actori = actori;
     }
 
@@ -94,7 +92,6 @@ public class Spectacol {
                 ", durata=" + durata +
                 ", numarBileteVandute=" + numarBileteVandute +
                 ", locatie=" + locatie +
-                ", actori=" + Arrays.toString(actori) +
                 ", pret=" + pret +
                 ", gen=" + gen +
                 '}';
@@ -105,14 +102,12 @@ public class Spectacol {
         if (this == o) return true;
         if (!(o instanceof Spectacol)) return false;
         Spectacol spectacol = (Spectacol) o;
-        return Objects.equals(getDenumire(), spectacol.getDenumire()) ;
+        return getDurata() == spectacol.getDurata() && getNumarBileteVandute() == spectacol.getNumarBileteVandute() && getPret() == spectacol.getPret() && Objects.equals(getDenumire(), spectacol.getDenumire()) && Objects.equals(getOraInceput(), spectacol.getOraInceput()) && Objects.equals(getLocatie(), spectacol.getLocatie()) && Objects.equals(getActori(), spectacol.getActori()) && getGen() == spectacol.getGen();
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(getDenumire(), getOraInceput(), getDurata(), getNumarBileteVandute(), getLocatie(), getPret(), getGen());
-        result = 31 * result + Arrays.hashCode(getActori());
-        return result;
+        return Objects.hash(getDenumire(), getOraInceput(), getDurata(), getNumarBileteVandute(), getLocatie(), getActori(), getPret(), getGen());
     }
 }
 

@@ -2,14 +2,18 @@ package pao;
 
 import pao.service.Service;
 import pao.entity.*;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        {
+
 //        creare service
             Service service = new Service();
 
@@ -56,10 +60,20 @@ public class Main {
             LocalTime t3 = LocalTime.of(20, 00);
 
             Spectacol s1 = new Spectacol("Prostia omeneasca", t1, 120, l1, 15, Genul.COMEDIE);
+            List<Actor> list1 = new ArrayList<>(Arrays.asList(a1, a2, a3));
+            service.adaugaActori(list1, s1);
             Spectacol s2 = new Spectacol("Doamne, ce zile minunate!", t2, 100, l2, 15, Genul.DRAGOSTE);
+            List<Actor> list2 = new ArrayList<>(Arrays.asList(a4, a5, a6));
+            service.adaugaActori(list2, s2);
             Spectacol s3 = new Spectacol("Antigona", t2, 150, l6, 30, Genul.TRAGEDIE);
+            List<Actor> list3 = new ArrayList<>(Arrays.asList(a7, a8, a9, a10, a11, a12, a13));
+            service.adaugaActori(list3, s3);
             Spectacol s4 = new Spectacol("Tache, Ianche si Cadir", t3, 150, l5, 30, Genul.COMEDIE);
+            List<Actor> list4 = new ArrayList<>(Arrays.asList(a14, a15, a16));
+            service.adaugaActori(list4, s4);
             Spectacol s5 = new Spectacol("Gaitele", t3, 150, l3, 30, Genul.COMEDIE);
+            List<Actor> list5 = new ArrayList<>(Arrays.asList(a17, a18, a19, a20));
+            service.adaugaActori(list5, s5);
 
 //        crearea unui program
             LocalDate dataInceput = LocalDate.of(2022, 3, 28);
@@ -109,20 +123,25 @@ public class Main {
                     while (true) {
                         System.out.println();
                         System.out.println("In continuare, va rugam sa alegeti una dintre urmatoarele optiuni: ");
-                        System.out.println("1) afiseaza programul intreg al unei zile");            //TODO: pe viitor vor fi afisate doar primele 3 spectacole ale unei zile si apoi numarul celor care au  mai ramas de afisat
-                        System.out.println("2) afiseaza informatii despre un spectacol");            //TODO
+                        System.out.println("1) afiseaza programul intreg al unei zile");
+                        System.out.println("2) afiseaza informatii despre un spectacol");
                         System.out.println("3) cumpara bilete la un spectacol");
                         System.out.println("4) afiseaza cosul de cumparaturi");
-                        System.out.println("5) modifica biletele din cos");                //TODO
+                        System.out.println("5) modifica biletele din cos");                
                         System.out.println("6) iesi");
 
                         raspuns = scanner.nextLine();
                         if (raspuns.startsWith("1")) {
                             System.out.println();
-                            System.out.println("Introduceti numarul zilei: ");      //TODO: de adaugat o fct care primeste ca param numele zilei si returneaza numarul corespunzqtor
-                            int ziua = scanner.nextInt();
+                            System.out.println("Introduceti ziua: ");
+                            String ziua = scanner.nextLine();
                             service.afiseazaProgramZi(p1, ziua);
                         } else if (raspuns.startsWith("2")) {
+                            System.out.println();
+                            System.out.println("Introduceti numele spectacolului: ");
+                            String denumire = scanner.nextLine();
+                            service.afiseazaInformatiiSpectacol(denumire, p1);
+                        } else if (raspuns.startsWith("3")) {
                             System.out.println();
                             System.out.println("Introduceti numele spectacolului: ");
                             String denumire = scanner.nextLine();
@@ -131,8 +150,6 @@ public class Main {
                             Spectacol spectacol = p1.returneazaSpectacol(denumire);
                             System.out.println(spectacol);
                             service.adaugaBilet(cos, spectacol, numar);
-                        } else if (raspuns.startsWith("3")) {
-                            System.out.println();
                             service.afiseazaCos(cos);
                         } else if (raspuns.startsWith("4")) {
                             System.out.println();
@@ -141,6 +158,7 @@ public class Main {
                                 System.out.println("Aveti de achitat: " + totalDePlata);
                             }
                         } else if (raspuns.startsWith("6")) {
+                            System.out.println("Multumim de vizita!");
                             break;
                             }
                     }
@@ -150,5 +168,6 @@ public class Main {
             } else System.out.println("Va asteptam sa va razganditi si sa reveniti pe platfoma noastra! :)");
 
         }
-    }
 }
+
+

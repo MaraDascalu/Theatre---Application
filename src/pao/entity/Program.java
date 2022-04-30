@@ -4,18 +4,19 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Program {
     private LocalDate dataInceput;
     private LocalDate dataSfarsit;
-    private ArrayList<Spectacol>[] program = new ArrayList[8];          //pentru fiecare zi a saptamanii programez niste spectacole
+    private List<Spectacol>[] program = new ArrayList[8];          //pentru fiecare zi a saptamanii programez niste spectacole
 
     public Program(LocalDate dataInceput, LocalDate dataSfarsit) {
         this.dataInceput = dataInceput;
         this.dataSfarsit = dataSfarsit;
         for (int i = 1 ; i < 8 ; i++)
         {
-            program[i] = new ArrayList<Spectacol>();
+            program[i] = new ArrayList<>();
         }
     }
 
@@ -27,7 +28,7 @@ public class Program {
         return dataSfarsit;
     }
 
-    public ArrayList<Spectacol>[] getProgram() {
+    public List<Spectacol>[] getProgram() {
         return program;
     }
 
