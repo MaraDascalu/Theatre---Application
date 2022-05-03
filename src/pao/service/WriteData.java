@@ -3,6 +3,7 @@ package pao.service;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collection;
 
 public class WriteData {
 
@@ -21,6 +22,12 @@ public class WriteData {
             buffer.write(text);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public <T> void afiseazaObiecte(Collection<T> colectie){
+        for (T obiect : colectie) {
+            System.out.println(obiect);
         }
     }
 }

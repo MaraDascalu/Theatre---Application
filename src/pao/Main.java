@@ -79,9 +79,10 @@ public class Main {
                     System.out.println("1) afiseaza programul intreg al unei zile");
                     System.out.println("2) afiseaza informatii despre un spectacol");
                     System.out.println("3) cumpara bilete la un spectacol");
-                    System.out.println("4) afiseaza cosul de cumparaturi");
-                    System.out.println("5) modifica biletele din cos");
-                    System.out.println("6) iesi");
+                    System.out.println("4) filtreaza spectacolele dupa durata");
+                    System.out.println("5) afiseaza cosul de cumparaturi");
+                    System.out.println("6) modifica biletele din cos");     //TODO
+                    System.out.println("7) iesi");
 
                     raspuns = scanner.nextLine();
                     if (raspuns.startsWith("1")) {
@@ -106,9 +107,15 @@ public class Main {
 //                        cosService.afiseazaCos(cos);
                     } else if (raspuns.startsWith("4")) {
                         System.out.println();
+                        System.out.println("Introduceti durata dorita (in minute):");
+                        int durata = scanner.nextInt();
+                        List<Spectacol> spectacoleFiltrate = spectacolService.filtreazaSpectacoleDupaDurata(spectacole, durata);
+                        writeData.afiseazaObiecte(spectacoleFiltrate);
+                    } else if (raspuns.startsWith("5")) {
+                        System.out.println();
                         System.out.println("Continutul cosului dumneavoastra: ");
                         cosService.afiseazaCos(cos);
-                    } else if (raspuns.startsWith("6")) {
+                    } else if (raspuns.startsWith("7")) {
                         System.out.println();
                         int totalDePlata = cosService.afiseazaTotalPlata(cos);
                         if (totalDePlata != 0) {

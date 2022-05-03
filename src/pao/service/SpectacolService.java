@@ -7,6 +7,7 @@ import pao.entity.Spectacol;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SpectacolService implements ISpectacolService{
 
@@ -51,5 +52,9 @@ public class SpectacolService implements ISpectacolService{
         }
         System.out.println("Pret bilet: " + spectacol.getPret());
         System.out.println("Genul: " + spectacol.getGen());
+    }
+
+    public List<Spectacol> filtreazaSpectacoleDupaDurata (List<Spectacol> spectacole, int durata) {
+        return spectacole.stream().filter(spectacol -> (spectacol.getDurata() <= durata)).collect(Collectors.toList());
     }
 }
