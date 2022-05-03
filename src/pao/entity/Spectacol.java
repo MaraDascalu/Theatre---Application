@@ -25,6 +25,16 @@ public class Spectacol {
         this.gen = gen;
     }
 
+    public Spectacol(String denumire, LocalTime oraInceput, int durata, Locatie locatie, int pret) {
+        this.denumire = denumire;
+        this.durata = durata;
+        this.oraInceput = oraInceput;
+        this.numarBileteVandute = 0;
+        this.locatie = locatie;
+        this.actori = new ArrayList<>();
+        this.pret = pret;
+    }
+
     public String getDenumire() {
         return denumire;
     }

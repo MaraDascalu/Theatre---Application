@@ -1,7 +1,8 @@
 package pao.entity;
 
+import pao.service.Audit;
+
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +11,7 @@ public class Program {
     private LocalDate dataInceput;
     private LocalDate dataSfarsit;
     private List<Spectacol>[] program = new ArrayList[8];          //pentru fiecare zi a saptamanii programez niste spectacole
+    private Audit audit;
 
     public Program(LocalDate dataInceput, LocalDate dataSfarsit) {
         this.dataInceput = dataInceput;
@@ -18,6 +20,7 @@ public class Program {
         {
             program[i] = new ArrayList<>();
         }
+        audit = Audit.getInstance("data/Audit.csv");
     }
 
     public LocalDate getDataInceput() {
@@ -43,6 +46,7 @@ public class Program {
     }
 
     public Spectacol returneazaSpectacol(String denumire){
+        audit.scriereFisierAudit();
         for(int i = 1; i < 8 ; i++)
         {
             for (int j = 0 ; j < program[i].size(); j++){
@@ -52,7 +56,7 @@ public class Program {
             }
 
         }
-        return new Spectacol("blabla", LocalTime.of(12,20), 2, new Locatie(), 5, Genul.COMEDIE ) ;
+        return null ;
     }
 
 }
