@@ -1,12 +1,13 @@
 package pao.entity;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Cos {
 
     private int numarComanda = 0;
     private Client client;
-    private HashMap<Bilet, Integer> bilete;
+    private Map<Bilet, Integer> bilete;
 
     public Cos(Client client) {
         this.numarComanda++;
@@ -22,7 +23,7 @@ public class Cos {
         return client;
     }
 
-    public HashMap<Bilet, Integer> getBilete() {
+    public Map<Bilet, Integer> getBilete() {
         return bilete;
     }
 }

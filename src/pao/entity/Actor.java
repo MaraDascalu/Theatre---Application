@@ -28,4 +28,14 @@ public class Actor {
     public int getAniDeExperienta() {
         return aniDeExperienta;
     }
+
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "nume='" + nume + '\'' +
+                ", prenume='" + prenume + '\'' +
+                ", numeDeScena='" + numeDeScena + '\'' +
+                ", aniDeExperienta=" + aniDeExperienta +
+                '}';
+    }
 }
