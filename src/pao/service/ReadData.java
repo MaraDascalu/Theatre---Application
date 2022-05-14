@@ -13,6 +13,8 @@ public class ReadData {
 
     private static ReadData instance;
 
+    private ReadData() { }
+
     public static ReadData getInstance() {
         if (instance == null) {
             instance = new ReadData();
@@ -45,6 +47,7 @@ public class ReadData {
 
         try(BufferedReader buffer = new BufferedReader(new FileReader("data/Actori.csv"))) {
 
+            buffer.readLine();
             String linie = buffer.readLine();
             while (linie != null) {
                 String[] data = linie.split(",");

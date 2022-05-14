@@ -9,6 +9,8 @@ public class WriteData {
 
     private static WriteData instance;
 
+    private WriteData() { }
+
     public static WriteData getInstance() {
         if (instance == null) {
             instance = new WriteData();

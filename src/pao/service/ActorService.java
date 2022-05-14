@@ -11,6 +11,7 @@ public class ActorService {
     private ReadData input;
 
     public ActorService() {
+        
         input = ReadData.getInstance();
         actori = new ArrayList<>(input.citesteActori());
     }

@@ -10,15 +10,16 @@ import java.util.List;
 public class Program {
     private LocalDate dataInceput;
     private LocalDate dataSfarsit;
-    private List<Spectacol>[] program = new ArrayList[8];          //pentru fiecare zi a saptamanii programez niste spectacole
+    private List<List<Spectacol>> program = new ArrayList<>();          //pentru fiecare zi a saptamanii programez niste spectacole
     private Audit audit;
 
     public Program(LocalDate dataInceput, LocalDate dataSfarsit) {
         this.dataInceput = dataInceput;
         this.dataSfarsit = dataSfarsit;
+        program.add(new ArrayList<>());
         for (int i = 1 ; i < 8 ; i++)
         {
-            program[i] = new ArrayList<>();
+            program.add(new ArrayList<>());
         }
         audit = Audit.getInstance("data/Audit.csv");
     }
@@ -31,26 +32,26 @@ public class Program {
         return dataSfarsit;
     }
 
-    public List<Spectacol>[] getProgram() {
+    public List<List<Spectacol>> getProgram() {
         return program;
     }
 
     public void sorteazaProgram(){
         for (int i = 1 ; i < 8 ; i ++){
-            Collections.sort(program[i], new SpectacolComparator());
+            Collections.sort(program.get(i), new SpectacolComparator());
         }
     }
 
     public void sorteazaProgramZi(int ziua){
-        Collections.sort(program[ziua], new SpectacolComparator());
+        Collections.sort(program.get(ziua), new SpectacolComparator());
     }
 
     public Spectacol returneazaSpectacol(String denumire){
         audit.scriereFisierAudit();
         for(int i = 1; i < 8 ; i++)
         {
-            for (int j = 0 ; j < program[i].size(); j++){
-                Spectacol spectacol = program[i].get(j);
+            for (int j = 0 ; j < program.get(i).size(); j++){
+                Spectacol spectacol = program.get(i).get(j);
                 if (spectacol.getDenumire().equalsIgnoreCase(denumire))
                     return new Spectacol(spectacol.getDenumire(), spectacol.getOraInceput(), spectacol.getDurata(), spectacol.getLocatie(), spectacol.getPret(), spectacol.getGen());
             }

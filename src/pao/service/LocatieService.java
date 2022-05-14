@@ -21,13 +21,13 @@ public class LocatieService implements ILocatieService{
 
     public String[] afiseazaSaliDisponibile(Program p, String teatru){        //afiseaza salile din programul curent care se afla in teatrul dat ca param
         audit.scriereFisierAudit();
-        List<Spectacol>[] program = p.getProgram();
+        List<List<Spectacol>> program = p.getProgram();
         String[] lista = new String[10];
         int cnt = 0;
         for (int i = 1 ; i < 8; i++)
-            for (int j = 0 ; j < program[i].size() ; j++)
-                if (program[i].get(j).getLocatie().getTeatru() == teatru)
-                    lista[cnt++] = program[i].get(j).getLocatie().getDenumire();
+            for (int j = 0 ; j < program.get(i).size() ; j++)
+                if (program.get(i).get(j).getLocatie().getTeatru() == teatru)
+                    lista[cnt++] = program.get(i).get(j).getLocatie().getDenumire();
         return lista;
     }
 }

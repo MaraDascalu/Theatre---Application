@@ -12,9 +12,7 @@ public class Main {
     public static void main(String[] args) {
 
 //        creare service-uri
-        ActorService actorService = new ActorService();
         CosService cosService = new CosService();
-        LocatieService locatieService = new LocatieService();
         ProgramService programService = new ProgramService();
         SpectacolService spectacolService = new SpectacolService();
         WriteData writeData = WriteData.getInstance();

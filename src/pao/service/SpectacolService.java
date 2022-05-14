@@ -27,11 +27,11 @@ public class SpectacolService implements ISpectacolService{
 
     public Spectacol gasesteSpectacolInProgram(String denumire, Program p){
         audit.scriereFisierAudit();
-        List<Spectacol>[] program = p.getProgram();
+        List<List<Spectacol>> program = p.getProgram();
         for (int i = 1 ; i < 8; i++){
-            for (int j = 0; j < program[i].size(); j++){
-                if (program[i].get(j).getDenumire().equalsIgnoreCase(denumire))
-                    return program[i].get(j);
+            for (int j = 0; j < program.get(i).size(); j++){
+                if (program.get(i).get(j).getDenumire().equalsIgnoreCase(denumire))
+                    return program.get(i).get(j);
             }
         }
         System.out.println("Nu exista acest spectacol in program!");
