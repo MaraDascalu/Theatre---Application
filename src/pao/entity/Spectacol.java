@@ -97,14 +97,12 @@ public class Spectacol {
 
     @Override
     public String toString() {
-        return "Spectacol{" +
-                "denumire='" + denumire + '\'' +
-                ", durata=" + durata +
-                ", numarBileteVandute=" + numarBileteVandute +
-                ", locatie=" + locatie +
-                ", pret=" + pret +
-                ", gen=" + gen +
-                '}';
+        return "Spectacol:\n" +
+                "\tdenumire: '" + denumire +
+                "\n\tdurata: " + durata +
+                "\n\tlocatie: " + locatie +
+                "\n\tpret bilet: " + pret +
+                "\n\tgen: " + gen;
     }
 
     @Override

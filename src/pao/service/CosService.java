@@ -41,7 +41,7 @@ public class CosService implements ICosService{
         }
         else {
             for (Bilet b : bilete.keySet()){
-                System.out.println("specatacol: " + b.getSpectacol().getDenumire() + ", cantitate: " + bilete.get(b));
+                System.out.println("\tSpecatacol: " + b.getSpectacol().getDenumire() + " \n\tNumar bilete: " + bilete.get(b));
             }
             return true;
         }

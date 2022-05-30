@@ -15,6 +15,7 @@ public class Main {
         CosService cosService = new CosService();
         ProgramService programService = new ProgramService();
         SpectacolService spectacolService = new SpectacolService();
+        ClientService clientService = new ClientService();
         WriteData writeData = WriteData.getInstance();
 
 //        preluare lista de spectacole din csv-ul de intrare
@@ -63,6 +64,11 @@ public class Main {
                 String email = scanner.nextLine();
                 output = output.concat("Email: " + email);
                 writeData.scrieDateUtilizator(output);
+                clientService.creareTabel();
+                clientService.adaugaClient(nume, prenume, nrDeTel, email);
+                clientService.modificaReducereClient(nume, 5);
+                clientService.stergeClient("tets");
+
 
                 System.out.println();
                 Client client = new Client(nume, prenume, email);
@@ -100,8 +106,8 @@ public class Main {
                         System.out.println("Introduceti numarul de bilete dorite: ");
                         int numar = scanner.nextInt();
                         Spectacol spectacol = program.returneazaSpectacol(denumire);
-                        System.out.println(spectacol);
-                        cosService.adaugaBilet(cos, spectacol, numar);
+                        if (spectacol != null)
+                            cosService.adaugaBilet(cos, spectacol, numar);
 //                        cosService.afiseazaCos(cos);
                     } else if (raspuns.startsWith("4")) {
                         System.out.println();
