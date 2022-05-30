@@ -41,17 +41,20 @@ public class SpectacolService implements ISpectacolService{
     public void afiseazaInformatiiSpectacol(String denumire, Program program){
         audit.scriereFisierAudit();
         Spectacol spectacol = gasesteSpectacolInProgram(denumire, program);
-        System.out.println("Ora de inceput: " + spectacol.getOraInceput());
-        System.out.println("Durata: " + spectacol.getDurata() + " minute");
-        Locatie locatie = spectacol.getLocatie();
-        System.out.println("Locatia: sala " + locatie.getDenumire() + ", teatrul: " + locatie.getTeatru());
-        System.out.println("Actori: ");
-        List<Actor> actori = spectacol.getActori();
-        for (Actor actor : actori){
-            System.out.println("    " + actor.getNumeDeScena());
+        if (spectacol != null) {
+            System.out.println("Ora de inceput: " + spectacol.getOraInceput());
+            System.out.println("Durata: " + spectacol.getDurata() + " minute");
+            Locatie locatie = spectacol.getLocatie();
+            System.out.println("Locatia:\n\t " + locatie.getDenumire() + " \n\tTeatrul " + locatie.getTeatru());
+            System.out.println("Actori: ");
+            List<Actor> actori = spectacol.getActori();
+            for (Actor actor : actori){
+                System.out.println("    " + actor.getNumeDeScena());
+            }
+            System.out.println("Pret bilet: " + spectacol.getPret());
+            System.out.println("Genul: " + spectacol.getGen());
         }
-        System.out.println("Pret bilet: " + spectacol.getPret());
-        System.out.println("Genul: " + spectacol.getGen());
+
     }
 
     public List<Spectacol> filtreazaSpectacoleDupaDurata (List<Spectacol> spectacole, int durata) {
