@@ -46,11 +46,11 @@ public class SpectacolService implements ISpectacolService{
             System.out.println("Durata: " + spectacol.getDurata() + " minute");
             Locatie locatie = spectacol.getLocatie();
             System.out.println("Locatia:\n\t " + locatie.getDenumire() + " \n\tTeatrul " + locatie.getTeatru());
-            System.out.println("Actori: ");
-            List<Actor> actori = spectacol.getActori();
-            for (Actor actor : actori){
-                System.out.println("    " + actor.getNumeDeScena());
-            }
+//            System.out.println("Actori: ");
+//            List<Actor> actori = spectacol.getActori();
+//            for (Actor actor : actori){
+//                System.out.println("    " + actor.getNumeDeScena());
+//            }
             System.out.println("Pret bilet: " + spectacol.getPret());
             System.out.println("Genul: " + spectacol.getGen());
         }

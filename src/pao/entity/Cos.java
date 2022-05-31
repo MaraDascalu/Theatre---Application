@@ -19,6 +19,14 @@ public class Cos {
         return numarComanda;
     }
 
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public void setBilete(Map<Bilet, Integer> bilete) {
+        this.bilete = bilete;
+    }
+
     public Client getClient() {
         return client;
     }

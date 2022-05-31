@@ -1,4 +1,3 @@
-Nume: d
-Prenume: d
-Numar de telefon: d
+Nume: 
+Prenume: 
 Email: 

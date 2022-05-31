@@ -16,10 +16,12 @@ public class Main {
         ProgramService programService = new ProgramService();
         SpectacolService spectacolService = new SpectacolService();
         ClientService clientService = new ClientService();
+        ActorService actorService = new ActorService();
         WriteData writeData = WriteData.getInstance();
 
 //        preluare lista de spectacole din csv-ul de intrare
         List<Spectacol> spectacole = spectacolService.getSpectacole();
+
 
 //        crearea unui program
         LocalDate dataInceput = LocalDate.of(2022, 4, 28);
@@ -66,9 +68,6 @@ public class Main {
                 writeData.scrieDateUtilizator(output);
                 clientService.creareTabel();
                 clientService.adaugaClient(nume, prenume, nrDeTel, email);
-                clientService.modificaReducereClient(nume, 5);
-                clientService.stergeClient("tets");
-
 
                 System.out.println();
                 Client client = new Client(nume, prenume, email);
@@ -119,12 +118,39 @@ public class Main {
                         System.out.println();
                         System.out.println("Continutul cosului dumneavoastra: ");
                         cosService.afiseazaCos(cos);
+                    } else if (raspuns.startsWith("6")) {
+                        System.out.println();
+                        System.out.println("Introduceti numele spectacolului: ");
+                        String denumire = scanner.nextLine();
+                        System.out.println("Introduceti numarul de bilete dorit: ");
+                        int nrBilete = scanner.nextInt();
+                        cosService.schimbaNumarulBiletelor(cos, spectacolService.gasesteSpectacolInProgram(denumire, program), nrBilete);
+
                     } else if (raspuns.startsWith("7")) {
                         System.out.println();
                         int totalDePlata = cosService.afiseazaTotalPlata(cos);
-                        if (totalDePlata != 0) {
-                            System.out.println("Aveti de achitat: " + totalDePlata);
+                        int numarBilete = 0;
+                        if (totalDePlata != 0){
+                            Map<Bilet, Integer> bilete = cos.getBilete();
+                            for (Bilet b : bilete.keySet()) {
+                                numarBilete+=bilete.get(b);
+                            }
                         }
+                        else {
+                            System.out.println("Momentan cosul dumneavoastra de cumparaturi este gol!");
+                        }
+                        if (numarBilete >= 15) {
+                            ClientFidel cf = new ClientFidel(client.getNume(), client.getPrenume(), client.getNumarDeTelefon(), client.getEmail());
+                            clientService.modificaReducereClient(cf.getNume(), cf.getDiscount());
+                            cos.setClient(cf);
+                        }
+
+                        if (totalDePlata != 0) {
+                            if (numarBilete >= 15)
+                                System.out.println("Aveti de achitat: " + cosService.aplicaReducere(cos));
+                            else System.out.println("Aveti de achitat: " + totalDePlata);
+                        }
+                        clientService.stergeClient(client.getNume());
                         System.out.println("Multumim de vizita!");
                         break;
                     }

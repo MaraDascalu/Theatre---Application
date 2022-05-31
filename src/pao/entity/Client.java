@@ -51,7 +51,7 @@ public class Client {
         this.email = email;
     }
 
-    public float getDiscount(){
+    public int getDiscount(){
         return  0;
     }
 }

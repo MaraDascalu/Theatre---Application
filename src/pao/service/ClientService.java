@@ -14,6 +14,7 @@ public class ClientService {
     }
 
     public void creareTabel() {
+        audit.scriereFisierAudit();
         String sqlCreate = "CREATE TABLE IF NOT EXISTS client" +
                 "(nume varchar(50), prenume varchar(50), telefon varchar(20), email varchar(30), reducere int DEFAULT 0);";
 
@@ -29,6 +30,7 @@ public class ClientService {
     }
 
     public void adaugaClient(String nume, String prenume, String telefon, String email) {
+        audit.scriereFisierAudit();
         String sqlInsert = "INSERT INTO client(nume, prenume, telefon, email) VALUES (?,?,?,?)";
 
         try {
@@ -46,6 +48,7 @@ public class ClientService {
     }
 
     public void modificaReducereClient(String nume, int reducere) {
+        audit.scriereFisierAudit();
         String sqlUpdate = "UPDATE client SET reducere=? WHERE nume=?";
 
         try {
@@ -61,6 +64,7 @@ public class ClientService {
     }
 
     public int obtineReducereClient(String nume) {
+        audit.scriereFisierAudit();
         String sqlSelect = "SELECT reducere FROM client WHERE name=?";
 
         try {
@@ -78,6 +82,7 @@ public class ClientService {
     }
 
     public void stergeClient(String nume) {
+        audit.scriereFisierAudit();
         String sqlDelete = "DELETE FROM client WHERE nume=?";
 
         try {
@@ -85,6 +90,8 @@ public class ClientService {
             PreparedStatement stmt = connection.prepareStatement(sqlDelete);
             stmt.setString(1,nume);
             stmt.executeUpdate();
+
+            DatabaseConnection.closeConnection();
 
         } catch (SQLException e) {
             e.printStackTrace();

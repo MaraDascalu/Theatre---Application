@@ -17,8 +17,8 @@ public class CosService implements ICosService{
     public int afiseazaTotalPlata(Cos c) {
         audit.scriereFisierAudit();
         int total = 0;
-        if (afiseazaCos(c)){
-            Map<Bilet, Integer> bilete = c.getBilete();
+        Map<Bilet, Integer> bilete = c.getBilete();
+        if (!bilete.isEmpty()){
             for (Bilet b : bilete.keySet()) {
                 total += b.getSpectacol().getPret() * bilete.get(b);
             }
@@ -61,11 +61,11 @@ public class CosService implements ICosService{
         else System.out.println("Numar de bilete indisponibil!");
     }
 
-    public void eliminaBilet(Cos c, Spectacol s){
+    public void eliminaBilet(Cos c, String denumire){
         audit.scriereFisierAudit();
         Map <Bilet, Integer> bilete = c.getBilete();
         for (Bilet b : bilete.keySet()){
-            if (b.getSpectacol() == s)
+            if (b.getSpectacol().getDenumire().equalsIgnoreCase(denumire))
             {
                 int numarBilete = b.getSpectacol().getNumarBileteVandute() - bilete.get(b);
                 b.getSpectacol().setNumarBileteVandute(numarBilete);
@@ -77,7 +77,16 @@ public class CosService implements ICosService{
 
     public void schimbaNumarulBiletelor(Cos cos, Spectacol spectacol, int numarDorit) {
         audit.scriereFisierAudit();
-        //TODO
+        Map <Bilet, Integer> bilete = cos.getBilete();
+        for (Bilet b : bilete.keySet()){
+            if (b.getSpectacol() == spectacol)
+            {
+                int numarBilete = b.getSpectacol().getNumarBileteVandute() - bilete.get(b);
+                spectacol.setNumarBileteVandute(numarBilete);
+                bilete.put(b, numarDorit);
+                break;
+            }
+        }
     }
 
     public int verificaDisponibilitateBilete(Spectacol s, int cantitate){
